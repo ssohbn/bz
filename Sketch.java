@@ -8,15 +8,11 @@ public class Sketch extends PApplet {
 	Point lastClickDown = null;
 
 	public void settings() {
-		size(400, 400);
+		size(600, 600);
 	}
 
 	public void setup() { 
 		background(0);
-		// points.add( new Point(0, 50) );
-		// points.add( new Point(30, 20) );
-		// points.add( new Point(90, 300) );
-		// points.add( new Point(200, 30) );
 	}
 
 	@Override
@@ -29,6 +25,9 @@ public class Sketch extends PApplet {
 	public void mousePressed() {
 		lastClickDown.x = mouseX;
 		lastClickDown.y = mouseY;
+
+	public void keyPressed() {
+		points.clear();
 	}
 	
 	public void draw() {
