@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	ArrayList<Position> positions = new ArrayList<>();
+	ArrayList<Point> points = new ArrayList<>();
 
 	public void settings() {
 		size(600, 600);
@@ -16,7 +16,7 @@ public class Sketch extends PApplet {
 	@Override
 	public void mouseClicked() {
 		Position clickPos = new Position(mouseX, mouseY);
-		positions.add(clickPos);
+		points.add(new Point(clickPos, 5, this));
 	}
 
 	@Override
