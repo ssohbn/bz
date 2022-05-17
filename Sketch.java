@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	ArrayList<Point> points = new ArrayList<>();
+	ArrayList<Position> positions = new ArrayList<>();
 
 	public void settings() {
 		size(600, 600);
@@ -15,13 +15,13 @@ public class Sketch extends PApplet {
 
 	@Override
 	public void mouseClicked() {
-		Point clickPos = new Point(mouseX, mouseY);
-		points.add(clickPos);
+		Position clickPos = new Position(mouseX, mouseY);
+		positions.add(clickPos);
 	}
 
 	@Override
 	public void keyPressed() {
-		points.clear();
+		positions.clear();
 	}
 	
 	public void draw() {
@@ -30,15 +30,15 @@ public class Sketch extends PApplet {
 		ellipse(mouseX, mouseY, 10, 10);
 
 
-		if ( points.size() != 0) {
+		if ( positions.size() != 0) {
 			for ( int i = 0; i < 1000; i++) {
 				float p = i / 1000F;
-				Point bp = bezier(points, p);
-				point(bp.x, bp.y);
+				Position bp = bezier(positions, p);
+				position(bp.x, bp.y);
 			}
 
-			for ( Point p : points) {
-				float d = distance(p, new Point(mouseX, mouseY));	
+			for ( Position p : positions) {
+				float d = distance(p, new Position(mouseX, mouseY));	
 				System.out.println(d);
 				if ( d < 10) {
 					fill(255,0,0);
@@ -50,52 +50,52 @@ public class Sketch extends PApplet {
 	}
 
 	/**
-	 * use for make silly smooth curve on a list of points
-	 * @param points
+	 * use for make silly smooth curve on a list of positions
+	 * @param positions
 	 * @param percent
 	 * @return
 	 */
-	Point bezier(Point[] points, float percent) {
-		if ( points.length == 1 ) return points[0];
-		Point[] rpoints = new Point[points.length-1];
-		for ( int i = 0; i<rpoints.length; i++) {
-			rpoints[i] = lerp(points[i], points[i+1], percent);
+	Position bezier(Position[] positions, float percent) {
+		if ( positions.length == 1 ) return positions[0];
+		Position[] rpositions = new Position[positions.length-1];
+		for ( int i = 0; i<rpositions.length; i++) {
+			rpositions[i] = lerp(positions[i], positions[i+1], percent);
 		}
-		return bezier(rpoints, percent);
+		return bezier(rpositions, percent);
 	}
 
 	/**
-	 * use for make silly smooth curve on a list of points
-	 * @param points
+	 * use for make silly smooth curve on a list of positions
+	 * @param positions
 	 * @param percent
 	 * @return
 	 */
-	Point bezier(ArrayList<Point> points, float percent) {
-		if ( points.size() == 0) return null;
-		if ( points.size() == 1 ) return points.get(0);
-		Point[] rpoints = new Point[points.size()-1];
-		for ( int i = 0; i<rpoints.length; i++) {
-			rpoints[i] = lerp(points.get(i), points.get(i+1), percent);
+	Position bezier(ArrayList<Position> positions, float percent) {
+		if ( positions.size() == 0) return null;
+		if ( positions.size() == 1 ) return positions.get(0);
+		Position[] rpositions = new Position[positions.size()-1];
+		for ( int i = 0; i<rpositions.length; i++) {
+			rpositions[i] = lerp(positions.get(i), positions.get(i+1), percent);
 		}
-		return bezier(rpoints, percent);
+		return bezier(rpositions, percent);
 	}
 
-	Point lerp(Point a, Point b, float percent) {
+	Position lerp(Position a, Position b, float percent) {
 		float cx = a.x + (b.x-a.x) * percent;
 		float cy = a.y + (b.y -a.y) * percent;	
-		return new Point(cx, cy);
+		return new Position(cx, cy);
 	}
-	float distance(Point a, Point b) {
+	float distance(Position a, Position b) {
 		float d = (float) Math.sqrt(Math.pow((b.x-a.x),2) + Math.pow((b.y-a.y),2));
 		return d;
 	}
 }
 
-class Point {
+class Position {
 	public float x;
 	public float y;
 	
-	public Point(float x, float y) {
+	public Position(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
