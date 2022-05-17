@@ -6,7 +6,7 @@ public class Sketch extends PApplet {
 	ArrayList<Point> points = new ArrayList<>();
 
 	public void settings() {
-		size(400, 400);
+		size(600, 600);
 	}
 
 	public void setup() { 
