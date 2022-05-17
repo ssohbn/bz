@@ -38,7 +38,7 @@ public class Sketch extends PApplet {
 			}
 
 			for ( Point p : points) {
-				float d = distance(p, new Position(mouseX, mouseY));	
+				float d = distance(p.position, new Position(mouseX, mouseY));	
 				
 				ellipse(p.x, p.y, 10, 10);
 				fill(255);
@@ -82,7 +82,8 @@ public class Sketch extends PApplet {
 		float cy = a.y + (b.y -a.y) * percent;	
 		return new Position(cx, cy);
 	}
-	float distance(Position a, Position b) {
+	
+	public static float distance(Position a, Position b) {
 		float d = (float) Math.sqrt(Math.pow((b.x-a.x),2) + Math.pow((b.y-a.y),2));
 		return d;
 	}
@@ -100,6 +101,8 @@ class Position {
 	public void print() {
 		System.out.println("x: " + x + " y: " + y);
 	}
+
+	
 }
 
 class Point {
@@ -114,7 +117,13 @@ class Point {
 		this.sketch = sketch;
 		this.held = false;
 	}
-
+	
+	public boolean colliding(Position p) {
+		if ( Main.distance(this.position, p) < this.radius ) 	{
+			return true;
+		}
+		return false;
+	}
 	public void draw() 
 	{
 		sketch.fill(255);
