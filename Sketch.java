@@ -94,14 +94,26 @@ public class Sketch extends PApplet {
 }
 
 class Point {
-	p
+	public Position position;
+	public float radius;
+
+	public Point(float radius, Position position) {
+		this.position = position;
+		this.radius = radius;
+	}
+
+	public boolean colliding(Position p2) {
+		// center (x - h)^2 + (y - k)^2 = r^2
+		// center h, k
+		// radius r
+	}
 }
 
 class Position {
 	public float x;
 	public float y;
 	
-	public Point(float x, float y) {
+	public Position(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
