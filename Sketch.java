@@ -37,12 +37,9 @@ public class Sketch extends PApplet {
 				point(bp.x, bp.y);
 			}
 
-			for ( Position p : positions) {
+			for ( Point p : points) {
 				float d = distance(p, new Position(mouseX, mouseY));	
-				System.out.println(d);
-				if ( d < 10) {
-					fill(255,0,0);
-				}
+				
 				ellipse(p.x, p.y, 10, 10);
 				fill(255);
 				}
