@@ -11,18 +11,31 @@ public class Sketch extends PApplet {
   }
 
   public void draw() {
+    background(0);
     fill(255);
-    ellipse(mouseX, mouseY, 25, 25);
+    ellipse(mouseX, mouseY, 10, 10);
+
+	Point a = new Point(0, 0);
+	Point b = new Point(20, 30);
+	Point c = new Point(60, 0);
+	for ( int i = 0; i < 100; i++) {
+		i /= 100;
+		Point p = bezier(new Point[]{a, b, c}, i);
+		ellipse((float) p.x, (float) p.y, 10F, 10F);
+
+	}
+
+
   }
 
-	Point sus(Point[] points, double percent) {
+	Point bezier(Point[] points, double percent) {
 		if ( points.length == 0) return null;
 		if ( points.length == 1 ) return points[0];
 		Point[] rpoints = new Point[points.length-1];
 		for ( int i = 0; i<rpoints.length; i++) {
 			rpoints[i] = lerp(points[i], points[i+1], percent);
 		}
-		sus(rpoints, percent);
+		bezier(rpoints, percent);
 		return null;
 	}
 
@@ -38,7 +51,7 @@ class Point {
 	public double y;
 	
 	public Point(double x, double y) {
-		this. x = x;
+		this.x = x;
 		this.y = y;
 	}
 	
