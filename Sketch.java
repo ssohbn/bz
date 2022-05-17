@@ -34,7 +34,7 @@ public class Sketch extends PApplet {
 			for ( int i = 0; i < 1000; i++) {
 				float p = i / 1000F;
 				Position bp = bezier(positions, p);
-				position(bp.x, bp.y);
+				point(bp.x, bp.y);
 			}
 
 			for ( Position p : positions) {
@@ -102,5 +102,28 @@ class Position {
 
 	public void print() {
 		System.out.println("x: " + x + " y: " + y);
+	}
+}
+
+class Point {
+	public Position position;
+	public float radius;
+	public Sketch sketch;
+	public boolean held;
+
+	Point(Position position, float radius, Sketch sketch ) {
+		this.position = position;
+		this.radius = radius;
+		this.sketch = sketch;
+		this.held = false;
+	}
+
+	public void draw() 
+	{
+		sketch.fill(255);
+		if ( held ) sketch.fill(255,0,0);
+
+		
+		sketch.ellipse(position.x, position.y, radius, radius);
 	}
 }
