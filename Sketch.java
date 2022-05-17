@@ -82,7 +82,7 @@ public class Sketch extends PApplet {
 
 	Point lerp(Point a, Point b, float percent) {
 		float cx = a.x + (b.x-a.x) * percent;
-		float cy = a.y + (b.y -a.y) * percent;	
+		float cy = a.y + (b.y -a.y) * percent;
 		return new Point(cx, cy);
 	}
 	float distance(Point a, Point b) {
