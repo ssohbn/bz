@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 
 import processing.core.PApplet;
-import processing.event.MouseEvent;
 
 public class Sketch extends PApplet {
 	ArrayList<Point> points = new ArrayList<>();
-	Point lastClickDown = null;
+	Point lastClickDown = new Point(0,0);
 
 	public void settings() {
 		size(600, 600);
@@ -25,8 +24,14 @@ public class Sketch extends PApplet {
 	public void mousePressed() {
 		lastClickDown.x = mouseX;
 		lastClickDown.y = mouseY;
-
+	}
+	
+	public void mouseReleased() {
+		
+	}
+	
 	public void keyPressed() {
+		// clear points on keyboard press
 		points.clear();
 	}
 	
@@ -89,6 +94,10 @@ public class Sketch extends PApplet {
 }
 
 class Point {
+	p
+}
+
+class Position {
 	public float x;
 	public float y;
 	
