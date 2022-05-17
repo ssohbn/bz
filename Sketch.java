@@ -38,8 +38,14 @@ public class Sketch extends PApplet {
 			}
 
 			for ( Point p : points) {
+				float d = distance(p, new Point(mouseX, mouseY));	
+				System.out.println(d);
+				if ( d < 10) {
+					fill(255,0,0);
+				}
 				ellipse(p.x, p.y, 10, 10);
-			}
+				fill(255);
+				}
 		}
 	}
 
@@ -50,7 +56,6 @@ public class Sketch extends PApplet {
 	 * @return
 	 */
 	Point bezier(Point[] points, float percent) {
-		if ( points.length == 0) return null;
 		if ( points.length == 1 ) return points[0];
 		Point[] rpoints = new Point[points.length-1];
 		for ( int i = 0; i<rpoints.length; i++) {
@@ -79,6 +84,10 @@ public class Sketch extends PApplet {
 		float cx = a.x + (b.x-a.x) * percent;
 		float cy = a.y + (b.y -a.y) * percent;	
 		return new Point(cx, cy);
+	}
+	float distance(Point a, Point b) {
+		float d = (float) Math.sqrt(Math.pow((b.x-a.x),2) + Math.pow((b.y-a.y),2));
+		return d;
 	}
 }
 
