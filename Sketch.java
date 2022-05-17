@@ -11,10 +11,6 @@ public class Sketch extends PApplet {
 
 	public void setup() { 
 		background(0);
-		// points.add( new Point(0, 50) );
-		// points.add( new Point(30, 20) );
-		// points.add( new Point(90, 300) );
-		// points.add( new Point(200, 30) );
 	}
 
 	@Override
