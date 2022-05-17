@@ -31,8 +31,8 @@ public class Sketch extends PApplet {
 
 
 		if ( points.size() != 0) {
-			for ( int i = 0; i < 100; i++) {
-				float p = i / 100F;
+			for ( int i = 0; i < 1000; i++) {
+				float p = i / 1000F;
 				Point bp = bezier(points, p);
 				point(bp.x, bp.y);
 			}
