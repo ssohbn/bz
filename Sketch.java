@@ -22,6 +22,11 @@ public class Sketch extends PApplet {
 		Point clickPos = new Point(mouseX, mouseY);
 		points.add(clickPos);
 	}
+
+	@Override
+	public void keyPressed() {
+		points.clear();
+	}
 	
 	public void draw() {
 		background(255);
